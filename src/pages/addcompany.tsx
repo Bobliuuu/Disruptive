@@ -1,6 +1,7 @@
 import Navbar from "~/components/navbar";
 import { selectionItems } from "~/constants/navbar";
 import React, { useEffect } from "react";
+import { formItems } from "~/constants/navbar";
 
 // Typeform (add company page)
 export default function AddCompany() {
@@ -19,7 +20,7 @@ export default function AddCompany() {
 
   return (
     <div className="dark-bg-gradient min-h-screeen">
-      <Navbar navbarData={selectionItems} />
+      <Navbar navbarData={formItems} />
       
       {/* Paste the Typeform embed code snippet here */}
       <div
