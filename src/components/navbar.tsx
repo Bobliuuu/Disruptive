@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image"; // Import the Image component
 
-export default function Navbar() {
+export default function Navbar({ navbarData }) {
   return (
-    <nav className="flex flex-row items-center justify-between p-2 dark-navbar-gradient border-b-2 border-gradient-midblue-beige">
+    <nav className="flex flex-row items-center justify-between p-4 dark-navbar-gradient border-b-2 border-gradient-midblue-beige">
       <div className="flex items-center">
         {/* Display the image */}
         <Image src="/disruptive.png" alt="Disruptive Logo" width={30} height={40} className="ml-2"/>
@@ -13,9 +13,15 @@ export default function Navbar() {
         </a>
       </div>
       <div className="ml-auto">
-        <Link href="/" className="text-white inline-block m-3 pb-1 pt-1. pr-2 pl-2 rounded border border-white duration-300 hover:scale-105">
-          Sign In
-        </Link>
+        <ul className="flex gap-4">
+            {navbarData.map((item: any, index: any) => (
+                <li key={index}>
+                    <a href={item.link} className="text-beige m-3 pb-1 pt-1 pr-2 pl-2 hover:underline">
+                        {item.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
       </div>
     </nav>
   );

@@ -11,6 +11,10 @@ html {
         @apply inline bg-clip-text text-transparent;
     }
 
+    .button-selection {
+        @apply text-white inline-block text-center w-44 pb-2 pt-2 pr-2 pl-3 rounded border border-white duration-300 hover:scale-105 hover:highlight;
+    }
+
     .dark-navbar-gradient {
         @apply bg-gradient-to-tr from-darkblue via-black to-darkblue;
         @apply bg-gradient-to-b from-black to-darkblue via-black;
@@ -36,7 +40,7 @@ html {
     }
 
     .min-h-screeen {
-        min-height: calc(100vh - 72px);
+        min-height: calc(100vh - 64px);
     }
 
     .gradient-text {
