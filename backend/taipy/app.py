@@ -5,7 +5,7 @@ import requests
 import pandas as pd
 from taipy.gui import Gui, notify
 
-openai.api_key = "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"
+openai.api_key = "[redacted]"
 INITIAL_PROMPT = "I am a helpful assistant."
 MAX_TOKENS = 150
 
