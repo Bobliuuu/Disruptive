@@ -7,5 +7,42 @@ html {
 }
 
 @layer components {
-    
+    .gradient-text {
+        @apply inline bg-clip-text text-transparent;
+    }
+
+    .dark-navbar-gradient {
+        @apply bg-gradient-to-tr from-darkblue via-black to-darkblue;
+        @apply bg-gradient-to-b from-black to-darkblue via-black;
+    }
+
+    .dark-bg-gradient {
+        @apply bg-gradient-to-b from-darkblue to-black via-[#102138];
+    }
+
+    .border-gradient-midblue-beige {
+        border-image: linear-gradient(to right, #2E64B2, #F5F5DC);
+        border-image-slice: 0.8;
+    }
+
+    .gradient-text {
+        background-image: linear-gradient(to bottom, #93C5FD, #F7F7F1);
+        background-clip: text;
+        color: transparent;
+    }
+
+    .highlight {
+        background-color: #475569;
+    }
+
+    .min-h-screeen {
+        min-height: calc(100vh - 72px);
+    }
+
+    .gradient-text {
+        background-image: linear-gradient(to top, lightblue, beige);
+        background-clip: text;
+        -webkit-background-clip: text; /* For Safari/WebKit browsers */
+        color: transparent;
+      }
 }

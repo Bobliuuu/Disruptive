@@ -1,5 +1,5 @@
 const navigationItems = [
-    { label: "Home", link: "/" },
+    { label: "Sign In", link: "/" },
     { label: "Technology", link: "/technology" },
     { label: "Products", link: "/products" },
   ];
