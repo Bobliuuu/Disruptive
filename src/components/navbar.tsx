@@ -1,5 +1,21 @@
+import React from "react";
+import navigationItems from "../constants/navbar";
+
 export default function Navbar() {
-    <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16 ">
-      <h1 className="text-4xl light-main-gradient">Welcome to Disruptive!</h1>      
-    </div>
+  return (
+    <nav className="bg-gray-800 py-4">
+      <ul className="flex gap-6 justify-center">
+        {navigationItems.map((item, index) => (
+          <li key={index}>
+            <a
+              href={item.link}
+              className="text-white hover:text-gray-300 font-semibold"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
 }
