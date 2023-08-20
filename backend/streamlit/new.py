@@ -2,8 +2,11 @@ import streamlit as st
 import pandas as pd
 import sqlite3 
 import csv
+import openai
 
-tab1, tab2 = st.tabs(["View Companies", "Search Companies", "Semantic Search"])
+openai.api_key = '[redacted]'
+
+tab1, tab2, tab3 = st.tabs(["View Companies", "Search Companies", "Semantic Search"])
 
 def tab1():
     st.title("View Companies")
@@ -66,6 +69,75 @@ def tab1():
 
 def tab2():
     st.title('Search Companies')
+    text_search = st.text_input("Search name, industry, or location", value="")
+    df = pd.read_csv(file_path)
+    m1 = df["name"].str.contains(text_search, case=False)
+    m2 = df["industry"].str.contains(text_search, case=False)
+    m3 = df["country"].str.contains(text_search, case=False)
+    df_search = df[m1 | m2 | m3]
+    N_cards_per_row = 2
+    if text_search:
+        for n_row, row in df_search.reset_index().iterrows():
+            i = n_row % N_cards_per_row
+            if i == 0:
+                st.write("---")
+                cols = st.columns(N_cards_per_row, gap="large")
+            with cols[n_row % N_cards_per_row]:
+                st.caption(f"Results {row['No']:0.0f}")
+                st.caption(f"{row['name'].strip()}")
+                st.markdown(f"**{row['industry'].strip()}**")
+                st.markdown(f"{row['country'].strip()}")
+
+def tab3():
+    st.title('Semantic Search:')
+    prompt = """
+    Table  ompanies, columns = [name, domain, year_founded, industry, size range, locality, country, linedin url, current employee estimate]
+    As a senior analyst, given the above schema, write a detailed and correct MySQL query to answer the analytical question. Make sure to select *. 
+    """
+    response = openai.Completion.create(engine='text-davinci-003',
+                                    prompt=prompt,
+                                    max_tokens=1024,
+                                    temperature=0,
+                                    top_p=1,
+                                    frequency_penalty=0.0,
+                                    presence_penalty=0.0,
+                                    stop=['#'])['choices'][0]['text']
+    prompt = f"""{response}
+    Double check the MySQL query above for common mistakes, including:
+    - Handling case sensitivity (e.g. when using LIKE)
+    - Ensuring the join columns are correct
+    - Every column used exists and is the closest match to one of the keywords in the question
+    
+    Rewrite the query here if there are any mistakes. If it looks good as it is, just reproduce the original query."""
+    response = openai.Completion.create(engine='text-davinci-003',
+                                    prompt=prompt,
+                                    max_tokens=1024,
+                                    temperature=0,
+                                    top_p=1,
+                                    frequency_penalty=0.0,
+                                    presence_penalty=0.0,
+                                    stop=['#'])['choices'][0]['text']
+    original_df = pd.read_csv(file_path)
+    filtered_df = original_df.copy()
+    conn = sqlite3.connect('database.db')
+    cur = conn.cursor()
+    cur.execute('DROP TABLE companies')
+    cur.execute('''CREATE TABLE companies (
+        id INTEGER PRIMARY KEY,
+        "name" TEXT NOT NULL,
+        "domain" TEXT,
+        "year founded" INTEGER,
+        "industry" TEXT,
+        "size range" TEXT,
+        "locality" TEXT,
+        "country" TEXT,
+        "linkedin url" TEXT,
+        "current employee estimate" INTEGER,
+        "total employee estimate" INTEGER
+    );''')
+    original_df.to_sql('companies', conn, if_exists='append', index=False)        
+    filtered_df = pd.read_sql_query(f"response", conn)
+    st.dataframe(filtered_df) 
 
 def main():
     if tab1: 
