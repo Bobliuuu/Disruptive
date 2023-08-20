@@ -6,7 +6,7 @@ import pandas as pd
 from taipy.gui import Gui, notify
 
 openai.api_key = "[redacted]"
-INITIAL_PROMPT = "I am a helpful assistant."
+INITIAL_PROMPT = "You are an assistant that gives details about blockchain "
 MAX_TOKENS = 150
 
 
