@@ -21,7 +21,7 @@ export default function AddCompany() {
 
   return (
     <div className="dark-bg-gradient min-h-screeen">
-      <Navbar navbarData={formItems} />
+      <Navbar navbarData={selectionItems} />
       <div className="mt-3 w-11/12 md:w-10/12 lg:w-9/12 xl:w-8/12 mx-auto">
         <Link href="/upload" className="mt-8 gradient-text text-sm font-bold"><span className="font-bold text-base">+</span> Upload Pitch</Link>
       </div>

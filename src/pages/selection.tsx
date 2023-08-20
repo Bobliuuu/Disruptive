@@ -15,7 +15,7 @@ export default function Selection() {
               <Link href="http://localhost:3001/" className="button-selection"> Pre Seed Companies </Link>
             </div>
             <div className="mb-4">
-              <Link href="http://localhost:3001/" className="button-selection"> Seed+ Companies </Link>
+              <Link href="http://localhost:3002/" className="button-selection"> Seed+ Companies </Link>
             </div>
           </div>
         </div>
