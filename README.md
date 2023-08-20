@@ -1,28 +1,19 @@
-# Create T3 App
+# Disruptive: Disrupting the Business Market
+Disruptive is an insight and funding DAO platform for new and veteran investors to seek out data, insights, and connections related to everything from micro acquisitions to series A portfolios. 
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+## Inspiration
 
-## What's next? How do I make an app with this?
+## What it does
+Disruptive scrapes information from various sources: company websites, LinkedIn, news, and social media platforms to generate the newest possible market insights. After homepage authentication, investors are prompted to indicate their interest in either Pre/Post+ seed companies to invest in. When an option is selected, the investor is directed to a database of company data with search capabilities. From the results table, a company can be selected and the investor will be able to view company insights, business analyst data (graphs), fund companies, and a Streamlit Chatbot interface. The investor also has the option of adding a company to the database, as well as a company pitch if they selected the pre-seed option.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## How we built it
+The frontend was built with Next.js, TypeScript and Tailwind CSS. Firebase authentication was used to verify users from the home page. Selenium was used for web scraping for database information. Figma was used for design.
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+## Challenges we ran into
+Having never worked with Selenium and web scraping, we found understanding the dynamic loading and retrieval of web content challenging. The measures some websites have against scraping were also interesting to learn and try to work around. We also worked with chat-GPT and did prompt engineering to generate business insights - a task that can sometimes yield unexpected responses from chat-GPT!
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+## Accomplishments that we're proud of
 
-## Learn More
+## What we learned
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
-
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
-
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## What's next for Disruptive
